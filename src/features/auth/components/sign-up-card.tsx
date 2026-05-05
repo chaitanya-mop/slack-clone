@@ -1,13 +1,10 @@
 import { useAuthActions } from '@convex-dev/auth/react';
 import { TriangleAlert } from 'lucide-react';
 import { useState } from 'react';
-import { FaGithub } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
 
 import type { SignInFlow } from '../types';
 
@@ -23,11 +20,6 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [pending, setPending] = useState(false);
-
-  const handleOAuthSignUp = (value: 'github' | 'google') => {
-    setPending(true);
-    signIn(value).finally(() => setPending(false));
-  };
 
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -106,20 +98,6 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
             Continue
           </Button>
         </form>
-
-        <Separator />
-
-        <div className="flex flex-col gap-y-2.5">
-          <Button disabled={pending} onClick={() => handleOAuthSignUp('google')} variant="outline" size="lg" className="relative w-full">
-            <FcGoogle className="absolute left-2.5 top-3 size-5" />
-            Continue with Google
-          </Button>
-
-          <Button disabled={pending} onClick={() => handleOAuthSignUp('github')} variant="outline" size="lg" className="relative w-full">
-            <FaGithub className="absolute left-2.5 top-3 size-5" />
-            Continue with GitHub
-          </Button>
-        </div>
 
         <p className="text-center text-xs text-muted-foreground">
           Already have an account?{' '}
