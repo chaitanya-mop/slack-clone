@@ -17,7 +17,7 @@ const inter = Inter({
 
 export const metadata: Metadata = siteConfig;
 
-const RootLayout = ({ children }: Readonly<PropsWithChildren>) => {
+const RootLayout = async ({ children }: Readonly<PropsWithChildren>) => {
   return (
     <ConvexAuthNextjsServerProvider>
       <html lang="en">
